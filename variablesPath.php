@@ -15,6 +15,8 @@ class rutas {
     public static $pathTablaListadodeMaterias = "./tablalistadodematerias.php";
     public static $pathVerMateriasCorrelativas = "./vermateriascorrelativas.php";
     public static $pathVerMateria = "./vermateria.php";
+    public static $pathNuevoHeader = "./nuevo-header.php";
 }
+
 
 
