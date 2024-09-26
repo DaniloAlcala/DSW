@@ -34,24 +34,11 @@
     estado_carrera VARCHAR(10) NOT NULL
 )";
     if ($conn->query($sql) === FALSE) {
-        /*Cambiado de false a FALSE*/
-        /*  $msge="Error en la conexion" . $conn->error; */
+
         $msge = "<h5 style='color: #CA2E2E;'>Error en la conexión: " . $conn->error . "</h5>";
     }
     ;
 
-    // Obtener los datos del formulario
-    
-    /*     $cod_carrera = $_POST['cod_carrera'];
-        $nro_resolucion = $_POST['nro_resolucion'];
-        $nombre_carrera = $_POST['nombre_carrera'];
-        $titulo_otorgado = $_POST['titulo_otorgado'];
-        $duracion = $_POST['duracion'];
-        $modalidad = $_POST['modalidad'];
-        $carga_horaria = $_POST['carga_horaria'];
-        $estado_carrera = $_POST['estado_carrera'];
-
-     */
     // Consultar los datos
     $sql = "SELECT id_carrera, cod_carrera, nro_resolucion, nombre_carrera, titulo_otorgado, CONCAT( duracion, ' ',tipo_duracion) as duracion, modalidad, carga_horaria, estado_carrera FROM carrera";
     $result = $conn->query($sql);
