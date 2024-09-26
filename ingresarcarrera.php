@@ -123,9 +123,9 @@ include rutas::$pathNuevoHeader;
       <!-- Contenedor de ventana de contenido -->
       <div class="container-fluid">
             <div class="table-responsive ">
-                <h3 class="card-footer-text mt-2 mb-5 p-2">Carreras</h3>
-                <div class="m-4">
-                    <h2 class="text-dark-subtle title">Ingresar Nueva Carrera</h2>
+                <h3 class="card-footer-text mt-1 p-1">Carreras</h3>
+                <div class="card-footer-text mt-1 p-1">
+                    <h3 class="text-dark-subtle title">Ingresar Nueva Carrera</h3>
                     <?=$msge?>
                     <!-- <h6 class="text-black-50">
                         *Dar de alta las Materias para la carrera correspondiente

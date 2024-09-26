@@ -105,7 +105,7 @@
         }
     }
 
-    include rutas::$pathHeader;
+    include rutas::$pathNuevoHeader;
     ?>
 
     <main>
@@ -113,14 +113,14 @@
         <div class="d-flex flex-nowrap sidebar-height">
             <!-- Aside/Wardrobe/Sidebar Menu -->
             <?php
-            include rutas::$pathSlidebar;
+          //  include rutas::$pathSlidebar;
             ?>
             <!-- Fin de sidebar/aside -->
             <!-- Contenedor de ventana de contenido -->
-            <div class="col-9 offset-3 bg-light-subtle pt-5">
-                <div class="d-block p-3 m-4 h-100 ">
+            <div class="container-fluid">
+                <div class="table-responsive">
                     <h3 class="card-footer-text mt-2 mb-0 p-2">Materias de <?php echo $nombre_carrera ?></h3>
-                    <h3 class="card-footer-text mt-1 mb-1 p-2">Codigo de la Carrera:<?php echo $cod_carrera ?></h3>
+                    <h3 class="card-footer-text mt-1 mb-1 p-2">Codigo de la Carrera: <?php echo $cod_carrera ?></h3>
                     <div class="m-4">
                         <h2 class="text-dark-subtle title">Listado</h2>
                     </div>
@@ -205,10 +205,8 @@
                             <?= $msge ?>
                         </table>
                     </div>
-                    <div class="m-4">
+                    <div class="container table-responsive">
                         <div class="d-flex mb-5 gap-2 justify-content-between align-content-center">
-
-                                
 
                             <a href="<?=rutas::$pathVerCarrera .'?id_carrera='. $id_carrera ?>"><button
                                     class='btn btn-primary menu-icon border-0 px-4'>Volver a ver carrera</button></a>
