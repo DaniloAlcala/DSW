@@ -138,7 +138,7 @@
 
 
 
-                                <div class="col-md-6 offset-2 mb-5">
+                                <div class="table-responsive">
                                     <div class="d-flex mb-5 gap-2 justify-content-between align-content-center">
                                         <a href='vercarrera.php?id_carrera=<?= $id_carrera ?>'
                                             class='btn btn-primary menu-icon border-0 px-4'>Volver</a>

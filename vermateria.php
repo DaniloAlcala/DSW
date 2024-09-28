@@ -33,18 +33,16 @@ if ($conn->connect_error) {
 $sql = "SELECT id_materia,
 cod_num,
 cod_alpha,
-
 denominacion_materia,
 tipo_aprobacion,
 nota_min_aprobacion,
-trayecto,
 correlatividades,
 estado_materia,
-ciclo_lectivo,
 campo_formativo,
-carga_horaria_materia
-        
-        FROM materia WHERE id_materia=$id_materia";
+carga_horaria_materia,
+id_carrera,
+anio_carrera
+FROM materia WHERE id_materia=$id_materia";
         
 $result = $conn->query($sql);
 $row = $result->fetch_assoc();
