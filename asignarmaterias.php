@@ -11,7 +11,8 @@
 
 <body>
     <?php
-    require('./conexion.php');
+    include "variablesPath.php";
+    require(rutas::$pathConetion);
     $msge="";
     
     // Verificar si se ha enviado un ID de la materia
@@ -95,7 +96,7 @@
     // Cerrar la consulta
     $stmt->close();
 }
-    include "header.php";
+    include rutas::$pathNuevoHeader;
     //cerrar la conexión */
     $conn->close();
 
@@ -106,21 +107,21 @@
     <div class="d-flex flex-nowrap sidebar-height"> 
       <!-- Aside/Wardrobe/Sidebar Menu --> 
       <?php
-      include "sidebar.php"; 
+    //  include "sidebar.php"; 
         ?>  
 
-<div class="col-9 offset-3 bg-light-subtle pt-5">
-            <div class="d-block p-3 m-4 h-100 ">
+<div class="container-fluid">
+            <div class="table-responsive ">
                 <h3 class="card-footer-text mt-2 mb-5 p-2">Materias correlativa/s a la materia <?php echo $rowm['denominacion_materia']; ?></h3>
                 <div class="m-4">
-                    <h2 class="text-dark-subtle title">Asignar Materia</h2>
+                    <h2 class="text-dark-subtle title container table-responsive">Asignar Materia</h2>
                     <!-- <h6 class="text-black-50">
                         *Dar de alta las Materias para la carrera correspondiente
                     </h6> -->
                 </div>
 
                 <div>
-            <form class="row g-3 m-4" action="pruebaasignarmaterias.php?id_materia=<?=$id_materia?>" method="POST">
+            <form class="container table-responsive" action="pruebaasignarmaterias.php?id_materia=<?=$id_materia?>" method="POST">
             <div class="row g-3 m-4">
 
             <div class="col-md-6 position-relative">
@@ -161,9 +162,9 @@
                 </div>
 
 
-                <div class="col-md-6 offset-2 mb-5">
+                <div class="table-responsive">
                     <div class="d-flex mb-5 gap-2 justify-content-between align-content-center">
-                        <a href='tablalistadodematerias.php?id_materia=<?=$id_materia?>' class='btn btn-primary menu-icon border-0 px-4'>Volver</a>
+                        <a href="<?=rutas::$pathTablaListadoMaterias?>" class='btn btn-primary menu-icon border-0 px-4'>Volver</a>
                         <input class="btn btn-primary px-4 nav-bar border-0 text-wrap" type="submit" value="Guardar">
                     </div>
                 </div>

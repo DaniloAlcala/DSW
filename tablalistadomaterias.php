@@ -19,10 +19,9 @@
     $searchTerm = isset($_GET['q']) ? $_GET['q'] : '';
     $filter = isset($_GET['filter']) ? $_GET['filter'] : 'all';
     // Consultar los datos con posibilidad de búsqueda
-    $sql = "SELECT personal.id_personal,  concat(personal.apellido_personal, ' ', personal.nombre_personal) as nombrecompleto, materia.id_materia, materia.anio_carrera, materia.denominacion_materia, materia.tipo_aprobacion, materia.correlatividades
-        FROM personal 
-        INNER JOIN materia_profesor ON personal.id_personal = materia_profesor.id_personal 
-        INNER JOIN materia ON materia_profesor.id_materia = materia.id_materia ORDER BY materia.anio_carrera ASC,  materia.denominacion_materia ASC" ;
+    $sql = "SELECT m.id_materia, m.anio_carrera, m.denominacion_materia, m.tipo_aprobacion, m.correlatividades , c.nombre_carrera 
+            FROM materia m 
+            INNER JOIN carrera c ON m.id_carrera = c.id_carrera" ;
     if ($filter !== 'all' && !empty($searchTerm)) {
         $sql .= " WHERE $filter LIKE '%$searchTerm%' ";
     }
@@ -48,7 +47,8 @@
                                 <select class="form-select" name="filter">
                                     <option value="all" <?php echo ($filter === 'all') ? 'selected' : ''; ?>>Todos los campos</option>
                                     <option value="denominacion_materia" <?php echo ($filter === 'denominacion_materia') ? 'selected' : ''; ?>>Nombre</option>
-                                    <option value="tipo_aprobacion" <?php echo ($filter === 'tipo_aprobacion') ? 'selected' : ''; ?>>Tipo Aprobación</option>
+                                    <option value="anio_carrera" <?php echo ($filter === 'anio_carrera') ? 'selected' : ''; ?>>Año de la carrera</option>
+                                    <option value="nombre_carrera" <?php echo ($filter === 'nombre_carrera') ? 'selected' : ''; ?>>carrera</option>
                                     <option value="correlatividades" <?php echo ($filter === 'correlatividades') ? 'selected' : ''; ?>>Correlatividades</option>
                                 </select>
                                 <input type="text" class="form-control" placeholder="Buscar" name="q" value="<?php echo $searchTerm; ?>">
@@ -65,12 +65,13 @@
                                 <tr>
                                     <th class="d-none">ID materia</th>
                                     <th>Año<br>Carrera</th>
-                                    <th>Denominación<br>Materia</th>
+                                    <th>Nombre </th>
                                     <th>Tipo<br>Aprobación</th>
                                     <th>Correlativas</th>
-                                    <th>Nombre Profesor</th>
+                                    <th>Carrera </th>
                                     <th>Ver<br>Correlativas</th>
                                     <th>Ver<br>Materia</th>
+                                    <th>Ver<br>Profesores</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -83,13 +84,17 @@
                                     echo "<td>" . $fila['denominacion_materia'] . "</td>";
                                     echo "<td>" . $fila['tipo_aprobacion'] . "</td>";
                                     echo "<td>" . $fila['correlatividades'] . "</td>";
-                                    echo "<td>" . $fila['nombrecompleto'] . "</td>";
+                                    echo "<td>" . $fila['nombre_carrera'] . "</td>";
 
                                     echo "<td><a href='vermateriascorrelativas.php?id_materia=" . $fila['id_materia'] . "' class='btn btn-custom-view' title='Ver Materias Correlativas'>";
                                     echo "<i class='fa-solid fa-book' style='color: #0077FF;'></i>";
                                     echo "</a></td>";
 
                                     echo "<td><a href='vermateria.php?id_materia=" . $fila["id_materia"] . " ' class='btn btn-custom-view' title='Ver materia'>";
+                                    echo "<i class='fas fa-eye'></i>";
+                                    echo "</a></td>";
+
+                                    echo "<td><a href='vermateria.php?id_materia=" . $fila["id_materia"] . " ' class='btn btn-custom-view' title='Ver Profesores'>";
                                     echo "<i class='fas fa-eye'></i>";
                                     echo "</a></td>";
 

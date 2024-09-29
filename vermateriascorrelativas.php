@@ -12,7 +12,8 @@
 <?php
 
 // 1. Agregamos la inclusión del archivo de conexión y declaramos la variable de mensaje.
-require('./conexion.php');
+include "variablesPath.php";
+require(rutas::$pathConetion);
 
 $msge = "";
 $busqueda = "";
@@ -38,7 +39,7 @@ if (isset($_GET['id_materia'])) {
     
     // 4. Consultar las materias correlativas y el tipo de aprobación
     try {
-        $sql = "SELECT m.id_materia, m.denominacion_materia, ta.nombre_tipo_aprobacion, (select m.denominacion_materia from materia as m where id_materia = mc.materia_correlativa) as materia_correlativa
+        $sql = "SELECT m.id_materia, ta.nombre_tipo_aprobacion, (select m.denominacion_materia from materia as m where id_materia = mc.materia_correlativa) as materia_correlativa
         FROM materia AS m 
         JOIN correlativas AS mc ON mc.id_materia = m.id_materia 
         JOIN tipo_aprobacion AS ta ON ta.id_tipo_aprobacion = mc.tipo_aprobacion_correlativa
@@ -53,7 +54,7 @@ if (isset($_GET['id_materia'])) {
 
 
     // 5. Incluimos el archivo del encabezado.
-    include "header.php";
+    include rutas::$pathNuevoHeader;
 }
 ?>
 
@@ -62,13 +63,12 @@ if (isset($_GET['id_materia'])) {
      <div class="d-flex flex-nowrap sidebar-height"> 
       <!-- Aside/Wardrobe/Sidebar Menu --> 
       <?php
-      include "sidebar.php"; 
-        ?>  
+          ?>  
 
         <!-- Fin de sidebar/aside -->
         <!-- Contenedor de ventana de contenido -->
         
-    <div class="col-9 offset-3 bg-light-subtle pt-5">
+    <div class="container-fluid">
         <div class="d-block p-3 m-4 h-100 ">
             <h3 class="card-footer-text mt-2 mb-5 p-2">Materias Correlativas de <?php echo $denominacion_materia?></h3>
             <div class="m-4">
@@ -110,7 +110,6 @@ if (isset($_GET['id_materia'])) {
                 <thead>
                     <tr>
                         <th class="d-none">ID Materia</th>
-                        <th>Materia</th>
                         <th>Materia Correlativa</th>
                         <th>Tipo de Aprobación</th>
                     </tr>
@@ -126,7 +125,6 @@ if (isset($_GET['id_materia'])) {
                         foreach ($datos as $fila) {
                             echo "<tr>";
                             echo "<td class='d-none'>" . $fila['id_materia'] . "</td>";
-                            echo "<td>" . $fila['denominacion_materia'] . "</td>";
                             echo "<td>" . $fila['materia_correlativa'] . "</td>";
                             echo "<td>" . $fila['nombre_tipo_aprobacion'] . "</td>";
                             echo "</tr>";
@@ -141,11 +139,10 @@ if (isset($_GET['id_materia'])) {
             <?=$msge?>
         </div>
 
-        <div class="col-md-6 offset-2 mb-5">
+        <div class="container table-resposive">
             <div class="d-flex mb-5 gap-2 justify-content-between align-content-center">
-                
-                <a href='tablalistadodematerias.php'><button class='btn btn-primary menu-icon border-0 px-4'>Volver</button></a>
-                <a href='asignarmaterias.php?id_materia=<?=$id_materia?>'><button class='btn btn-primary menu-icon border-0 px-4'>Agregar Materia</button></a>
+                <a href="<?=rutas::$pathTablaListadoMaterias?>"><button class='btn btn-primary menu-icon border-0 px-4'>Volver</button></a>
+                <a href=<?=rutas::$pathAsignarMaterias."?id_materia=".$id_materia?>><button class='btn btn-primary menu-icon border-0 px-4'>Agregar Materia</button></a>
             </div>
         </div>
     </div>

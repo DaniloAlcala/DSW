@@ -13,9 +13,11 @@ class rutas {
     public static $pathModificarCarrera = "./modificarcarrera.php";
     public static $pathAsignarMateriasCarrera = "./asignarmateriascarrera.php";
     public static $pathTablaListadodeMaterias = "./tablalistadodematerias.php";
+    public static $pathTablaListadoMaterias = "./tablalistadomaterias.php";
     public static $pathVerMateriasCorrelativas = "./vermateriascorrelativas.php";
     public static $pathVerMateria = "./vermateria.php";
     public static $pathNuevoHeader = "./nuevo-header.php";
+    public static $pathAsignarMaterias = "./asignarmaterias.php";
 }
 
 
