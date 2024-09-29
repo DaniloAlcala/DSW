@@ -94,7 +94,7 @@
                                     echo "<i class='fas fa-eye'></i>";
                                     echo "</a></td>";
 
-                                    echo "<td><a href='vermateria.php?id_materia=" . $fila["id_materia"] . " ' class='btn btn-custom-view' title='Ver Profesores'>";
+                                    echo "<td><a href='verprofesoresmateria.php?id_materia=" . $fila["id_materia"] . " ' class='btn btn-custom-view' title='Ver Profesores'>";
                                     echo "<i class='fas fa-eye'></i>";
                                     echo "</a></td>";
 
