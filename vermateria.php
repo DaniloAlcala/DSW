@@ -9,7 +9,8 @@
 </head>
 <body>
 <?php 
-    require('./conexion.php');
+    include "variablesPath.php";
+    require(rutas::$pathConetion);
     $msge = "<h5 style='color: #CA2E2E;'></h5>";
 ?>
 <?php 
@@ -49,7 +50,7 @@ $row = $result->fetch_assoc();
 
 // Cerrar la conexión
 $conn->close();
-include "headernosearch.php";
+include rutas::$pathNuevoHeader;
 ?>
 
 <main>
@@ -57,13 +58,13 @@ include "headernosearch.php";
     <div class="d-flex flex-nowrap sidebar-height"> 
       <!-- Aside/Wardrobe/Sidebar Menu --> 
       <?php
-      include "sidebar.php"; 
+      //include "sidebar.php"; 
         ?>  
       <!-- Fin de sidebar/aside -->
       <!-- Contenedor de ventana de contenido -->
-      <div class="col-9 offset-3 bg-light-subtle pt-5">
-            <div class="d-block p-3 m-4 h-100 ">
-                <h3 class="card-footer-text mt-2 mb-5 p-2">Materias</h3>
+      <div class="container-fluid">
+            <div class="table-responsive ">
+                <h3 class="card-footer-text mt-2 mb-5 p-2">Materia</h3>
                 <div class="m-4">
                     <h2 class="text-dark-subtle title">Ver Materia</h2>
                     <?=$msge?>
@@ -110,32 +111,16 @@ include "headernosearch.php";
                       </div>
 
 
-
-
-                        <div class="col-md-3 position-relative">
-                            <label class="form-label text-black-50" for="trayecto">Trayecto</label>
-                            <input class="form-control" type="text" name="trayecto" id="trayecto" value="<?= $row['trayecto'] ?>"readonly>
-                        </div>
-
-
-
                         <div class="col-md-3 position-relative">
                             <label class="form-label text-black-50" for="correlatividades">Correlativas</label>
                             <input class="form-control" type="text" name="correlatividades" id="correlatividades" value="<?= $row['correlatividades'] ?>"readonly>
                         </div>
-
-
 
                         <div class="col-md-3 position-relative">
                             <label class="form-label text-black-50" for="estado_materia">Estado Materia</label>
                             <input class="form-control" type="text" name="estado_materia" id="estado_materia" value="<?= $row['estado_materia'] ?>"readonly>
                         </div>
                         
-
-                        <div class="col-md-3 position-relative">
-                            <label class="form-label text-black-50" for="ciclo_lectivo">Ciclo Lectivo</label>
-                            <input class="form-control" type="text" name="ciclo_lectivo" id="ciclo_lectivo" value="<?= $row['ciclo_lectivo'] ?>"readonly>
-                        </div>
 
 
                         <div class="col-md-3 position-relative">
@@ -145,30 +130,24 @@ include "headernosearch.php";
 
 
                         <div class="col-md-3 position-relative">
-                            <label class="form-label text-black-50" for="carga_horaria_materia">Campo Formativo</label>
-                            <input class="form-control" type="text" name="carga_horaria_materia" id="carga_horaria_materia" value="<?= $row['carga_horaria_materia'] ?>"readonly>
+                            <label class="form-label text-black-50" for="carga_horaria_materia">Carga Horaria</label>
+                            <input class="form-control" type="text" name="carga_horaria_materia" id="carga_horaria_materia" value="<?= $row['carga_horaria_materia']." Horas" ?>"readonly>
                         </div>
-
-
 
                       
                     </form>
-                    <div class="row btn-group d-flex flex-sm-wrap justify-content-between text-center g-3 m-2">
-                       
-                        <div class="col-md-5 mb-5 position-relative">
-                                <div class="d-block mb-5 gap-2 align-content-start">
-                                    <h6 class="text-black-50">*Ver materias correlativas</h6>
-                                    <a class="" href='vermateriascorrelativas.php?id_materia=<?=$id_materia?>'><button class='btn btn-primary  px-4 menu-icon border-0'>Ver materias correlativas</button></a>
-                                    
-                                </div>
-                                <div class="col-md-6 offset-2">
-                            <div class="d-flex mb-5 gap-2 justify-content-between align-content-center">
-                            <a href="tablalistadomaterias.php"><button class='btn btn-primary menu-icon border-0 px-4' type="button">Volver</button></a>
-                            </div>
-                        </div>
 
-                        </div>
-                    </div> 
+
+
+                    <div class="table-resposive mx-5">
+                            <div class="d-flex mb-5 gap-2 justify-content-between align-content-center">
+                                <a href="<?=rutas::$pathTablaListadoMaterias?>"><button class='btn btn-primary menu-icon border-0 px-4'>Volver</button></a>
+                                <a href=<?=rutas::$pathVerMateriasCorrelativas."?id_materia=".$id_materia?>><button class='btn btn-primary menu-icon border-0 px-4'>Ver Correlativas</button></a>
+                            </div>
+                    </div>
+
+
+
                 </div>
               </div>
         </div>
