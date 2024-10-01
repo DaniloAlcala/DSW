@@ -18,7 +18,9 @@ class rutas {
     public static $pathVerMateria = "./vermateria.php";
     public static $pathNuevoHeader = "./nuevo-header.php";
     public static $pathAsignarMaterias = "./asignarmaterias.php";
+    public static $pathIngresoMateria = "./ingresomateria.php";
     public static $pathAsignarProfesor = "./asignarprofesor.php";
+    public static $pathNuevoModifiCarmateria = "./nuevomodificarmateria.php";
 }
 
 

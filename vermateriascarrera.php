@@ -113,7 +113,6 @@
         <div class="d-flex flex-nowrap sidebar-height">
             <!-- Aside/Wardrobe/Sidebar Menu -->
             <?php
-          //  include rutas::$pathSlidebar;
             ?>
             <!-- Fin de sidebar/aside -->
             <!-- Contenedor de ventana de contenido -->
@@ -209,7 +208,7 @@
                         <div class="d-flex mb-5 gap-2 justify-content-between align-content-center">
 
                             <a href="<?=rutas::$pathVerCarrera .'?id_carrera='. $id_carrera ?>"><button
-                                    class='btn btn-primary menu-icon border-0 px-4'>Volver a ver carrera</button></a>
+                                    class='btn btn-primary menu-icon border-0 px-4'>Ver carrera</button></a>
                             <a href="<?=rutas::$pathTablaListadoCarreras; ?>"><button
                                     class='btn btn-primary menu-icon border-0 px-4'>Volver a listado</button></a>
                             <a href='<?=rutas::$pathAsignarMateriasCarrera .'?id_carrera='. $id_carrera ?>'><button

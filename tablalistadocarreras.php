@@ -16,7 +16,7 @@
 
 <body>
     <?php
-    include "variablesPath.php";
+    require ("variablesPath.php");
     require(rutas::$pathConetion);
 
     $msge = "";
@@ -76,7 +76,6 @@
     <main>
         <!-- Contenedor principal -->
         <div class="d-flex flex-nowrap sidebar-height">
-            <!-- Aside/Wardrobe/Sidebar Menu -->
             <?php
            
             ?>
@@ -135,11 +134,6 @@
                                 </ul>
                                 <a href=<?=rutas::$pathTablaListadoCarreras?> 
                                     class="btn btn-primary custom-button m-2 mt-4">volver a Listado</a>
-
-
-
-
-
 
                                 <a href=<?=rutas::$pathIngresarCarrera?> 
                                     class="btn btn-primary custom-button mt-3 ms-auto">Ingresar Nueva Carrera</a>
