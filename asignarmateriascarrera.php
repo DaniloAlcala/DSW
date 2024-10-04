@@ -13,7 +13,7 @@
 <body>
     <?php
     include "variablesPath.php";
-    require(rutas::$pathConetion);
+    require(rutas::$pathConection);
     $msge = "";
 
     // Verificar si se ha enviado un ID de carrera de referencia

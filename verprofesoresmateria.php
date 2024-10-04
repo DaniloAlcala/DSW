@@ -13,7 +13,7 @@
 
 // 1. Agregamos la inclusión del archivo de conexión y declaramos la variable de mensaje.
 include "variablesPath.php";
-require(rutas::$pathConetion);
+require(rutas::$pathConection);
 
 $msge = "";
 $busqueda = "";

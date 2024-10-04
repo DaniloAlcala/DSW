@@ -4,7 +4,7 @@ class rutas {
 
     public static $pathHeader = "./header.php";
     public static $pathHeadernoSearch = "./headernosearch.php";
-    public static $pathConetion = "./conexion.php";
+    public static $pathConection = "./conexion.php";
     public static $pathSlidebar = "./sidebar.php";
     public static $pathVerMateriasCarrera = "./vermateriascarrera.php";
     public static $pathVerCarrera = "./vercarrera.php";

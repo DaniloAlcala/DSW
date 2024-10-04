@@ -9,7 +9,9 @@
 </head>
 <body>
 <?php 
-    require('./conexion.php');
+
+require ("variablesPath.php");
+    require(rutas::$pathConection);
     $msge="";
 ?>
 <?php 
@@ -18,7 +20,7 @@ $id_materia = $_GET['id_materia'];
 
     if ($id_materia === null || !is_numeric($id_materia)) {
         
-        header("Location: tablalistadodematerias.php");
+        header("Location:".rutas::$pathTablaListadodeMaterias);
         // Exit para detener la ejecución
         exit();
     }

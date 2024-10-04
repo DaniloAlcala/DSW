@@ -17,7 +17,7 @@
 <body>
     <?php
     require ("variablesPath.php");
-    require(rutas::$pathConetion);
+    require(rutas::$pathConection);
 
     $msge = "";
     $busqueda = "";
@@ -36,8 +36,7 @@
     if ($conn->query($sql) === FALSE) {
 
         $msge = "<h5 style='color: #CA2E2E;'>Error en la conexión: " . $conn->error . "</h5>";
-    }
-    ;
+    };
 
     // Consultar los datos
     $sql = "SELECT id_carrera, cod_carrera, nro_resolucion, nombre_carrera, titulo_otorgado, CONCAT( duracion, ' ',tipo_duracion) as duracion, modalidad, carga_horaria, estado_carrera FROM carrera";
@@ -94,7 +93,7 @@
                     <div class="container table-responsive">
 
                         <!-- Buscador -->
-                        <form class="" method="POST" action="./tablalistadocarreras.php">
+                        <form class="" method="POST" action=<?=rutas::$pathTablaListadoCarreras?>>
                             <div
                                 class="justify-content-start col-md-5 col-lg-auto flex-fill w-100 navbar navbar-expand-md vh-50 pt-4 p-3 gap-1">
                                 <a href="#" class="btn btn-primary custom-button mt-3">Carreras</a>
@@ -109,8 +108,6 @@
                                             <option value="Modalidad">Modalidad</option>
                                             <option value="Estado">Estado</option>
                                         </select>
-                                        <!-- <label for="filtrar">Filtro</label> -->
-                                        <!--   </div> -->
                                     </li>
                                     <li>
                                         <div class="d-flex m-0 p-0 bg-light border rounded-end-2">

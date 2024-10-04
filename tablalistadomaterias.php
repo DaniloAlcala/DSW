@@ -13,7 +13,7 @@
     <?php
 
     include "variablesPath.php";
-    require(rutas::$pathConetion);
+    require(rutas::$pathConection);
 
     // Obtener los datos del formulario
     $searchTerm = isset($_GET['q']) ? $_GET['q'] : '';

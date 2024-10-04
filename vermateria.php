@@ -10,7 +10,7 @@
 <body>
 <?php 
     include "variablesPath.php";
-    require(rutas::$pathConetion);
+    require(rutas::$pathConection);
     $msge = "<h5 style='color: #CA2E2E;'></h5>";
 ?>
 <?php 

@@ -11,7 +11,7 @@
 <?php
 try{
 include "variablesPath.php";
-require(rutas::$pathConetion);
+require(rutas::$pathConection);
 $msge="";
 $validacion="";
 
@@ -155,7 +155,7 @@ include rutas::$pathNuevoHeader;
                         <div class="col-md-2 position-relative">
                             <label class="form-label text-black-50 text-nowrap" for="nivel">Nivel*:</label>
                                 <select class="form-select form-select mb-2" name="nivel" id="nivel" aria-label="select nivel" required>
-                                    <option value="primaria">Primaria</option>
+                                    <option value="primaria">CFP</option>
                                     <option value="segundaria">Segundaria</option>
                                     <option value="terciario">Terciario</option>
                                     <option value="universitario">Universitario</option>

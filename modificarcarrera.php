@@ -12,7 +12,7 @@
 <?php 
 try{
     include "variablesPath.php";
-    require(rutas::$pathConetion);
+    require(rutas::$pathConection);
     $msge="";
     // Obtener el ID del registro a editar
 $id_carrera = $_GET['id_carrera'];
