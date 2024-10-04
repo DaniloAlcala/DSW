@@ -49,7 +49,7 @@
                                     <option value="denominacion_materia" <?php echo ($filter === 'denominacion_materia') ? 'selected' : ''; ?>>Nombre</option>
                                     <option value="anio_carrera" <?php echo ($filter === 'anio_carrera') ? 'selected' : ''; ?>>Año de la carrera</option>
                                     <option value="nombre_carrera" <?php echo ($filter === 'nombre_carrera') ? 'selected' : ''; ?>>carrera</option>
-                                    <option value="correlatividades" <?php echo ($filter === 'correlatividades') ? 'selected' : ''; ?>>Correlatividades</option>
+                
                                 </select>
                                 <input type="text" class="form-control" placeholder="Buscar" name="q" value="<?php echo $searchTerm; ?>">
                                 <button class="btn btn-outline-secondary" id="bottonbusqueda" type="submit">Buscar</button>
