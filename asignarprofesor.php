@@ -32,13 +32,13 @@ if (isset($_GET['id_materia'])) {
         $msge = "<h5 style='color: #CA2E2E;'>Materia no encontrada.</h5>";
         exit();
     }
+
+  
 } else {
     $msge = "<h5 style='color: #CA2E2E;'>ID de materia no especificado.</h5>";
-    $stmt->close();
+   // $stmt->close();
     exit();
 }
-
-$asignados = [];
 
 // Verificar si se ha enviado el formulario de edición
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -104,11 +104,11 @@ $conn->close();
 
                 <div>
                     
-                <form class="table-responsive mx-auto" action="asignarprofesor.php?id_materia=2" method="POST" style="width: 60%; position: relative;">
+    <form class="table-responsive mx-auto" action=<?=rutas::$pathAsignarProfesor."?id_materia=".$id_materia?> method="POST" style="width: 60%; position: relative;">
     <div class="row g-3 m-4">
         <div class="col-md-6 position-relative">
             <label class="form-label text-black-50" for="id_materia">ID Materia</label>
-            <input class="form-control" type="number" name="id_materia" id="id_materia" value="2" disabled="">
+            <input class="form-control" type="number" name="id_materia" id="id_materia" value=<?=$id_materia?> disabled="">
         </div>
  
         <div class="col-md-3 position-relative">
@@ -125,12 +125,12 @@ $conn->close();
         </div>
         
         <div class="d-flex justify-content-start  w-60 mx-auto " style="bottom: 0; left: 0; padding: 15px;">
-            <a href="tablalistadodematerias.php?id_materia=2" class="btn btn-primary menu-icon border-0 px-4 me-5">Volver</a>
+            <a href=<?=rutas::$pathTablaListadoMaterias?> class="btn btn-primary menu-icon border-0 px-4 me-5">Volver</a>
             <input class="btn btn-primary px-4 nav-bar border-0 text-wrap ms-5" type="submit" value="Guardar">
         </div>
     </div>
 </form>
-</form>
+
         <?php echo $msge; 
             ?>
 
