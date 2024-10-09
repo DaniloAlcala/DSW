@@ -22,7 +22,6 @@ $msge = "";
 // Verificar si se ha enviado un ID de la materia
 if (isset($_GET['id_materia'])) {
     $id_materia = $_GET['id_materia'];
-    echo "<script>logToConsole('El script se está ejecutando.');</script>"; // Depuración
     
     // Traigo el nombre de materia:
     $sql = "SELECT id_materia, denominacion_materia FROM materia WHERE id_materia = ?";
@@ -35,12 +34,10 @@ if (isset($_GET['id_materia'])) {
         $rowm = $result->fetch_assoc();
     } else {
         $msge = "<h5 style='color: #CA2E2E;'>Materia no encontrada.</h5>";
-        echo "<script>logToConsole('Materia no encontrada.');</script>"; // Depuración
         exit();
     }
 } else {
     $msge = "<h5 style='color: #CA2E2E;'>ID de materia no especificado.</h5>";
-    echo "<script>logToConsole('ID de materia no especificado.');</script>"; // Depuración
     exit();
 }
 
@@ -56,26 +53,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $materia_correlativa = $_POST['denominacion_materia'];
     $id_tipo_aprobacion = $_POST['tipo_aprobacion'];
 
-    // Depuración: Imprimir los valores en la consola
-    echo "<script>logToConsole('ID Materia: " . $id_materia . "');</script>"; 
-    echo "<script>logToConsole('Materia Correlativa (ID): " . $materia_correlativa . "');</script>"; 
-
     // query para validar si ya existe la correlativa
-    $sql_check = "SELECT * FROM correlativas WHERE id_materia = ? AND id_correlativa = ?";
+    $sql_check = "SELECT * FROM correlativas WHERE id_materia = ? AND materia_correlativa = ?";
     $stmt_check = $conn->prepare($sql_check);
     $stmt_check->bind_param("ii", $id_materia, $materia_correlativa);  
     $stmt_check->execute();
     $result_check = $stmt_check->get_result();
 
-    // Depuración: Verificar el resultado de la consulta de validación
-    echo "<script>logToConsole('Número de filas encontradas: " . $result_check->num_rows . "');</script>";
+
 
     if ($result_check->num_rows > 0) {
         $msge = "<h5 style='color: #CA2E2E;'>Esta materia ya está asignada como correlativa.</h5>";
-        echo "<script>logToConsole('Esta materia ya está asignada como correlativa.');</script>"; // Depuración
     } else {
         // Insertar la correlativa en la base de datos si no existe
-        $sql = "INSERT INTO correlativas (id_materia, id_correlativa, tipo_aprobacion_correlativa) VALUES (?, ?, ?)";
+        $sql = "INSERT INTO correlativas (id_materia, materia_correlativa, tipo_aprobacion_correlativa) VALUES (?, ?, ?)";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("iii", $id_materia, $materia_correlativa, $id_tipo_aprobacion);
 
@@ -83,14 +74,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if ($stmt->affected_rows > 0) {
                 // Mensaje de éxito
                 $msge = "<h5 style='color: #28A745;'>Correlativa agregada correctamente.</h5>";
-                echo "<script>logToConsole('Correlativa agregada correctamente.');</script>"; // Depuración
             } else {
-                $msge = "<h5 style='color: #CA2E2E;'>No se pudo agregar la correlativa.</h5>";
-                echo "<script>logToConsole('No se pudo agregar la correlativa.');</script>"; // Depuración
+                $msge = "<h5 style='color: #CA2E2E;'>No se pudo agregar la correlativa.</h5>";          
             }
         } else {
             $msge = "<h5 style='color: #CA2E2E;'>Error al ejecutar la consulta: " . $stmt->error . "</h5>";
-            echo "<script>logToConsole('Error al ejecutar la consulta: " . $stmt->error . "');</script>"; // Depuración
+        
         }
     }
     // Cerrar la consulta
@@ -98,7 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt_check->close();
 }
 
-include rutas::$pathNuevoHeader; // Mover esta línea aquí para que se incluya siempre después de la lógica
+include rutas::$pathNuevoHeader; 
 ?>
 
 <!-- Código HTML para el formulario -->
