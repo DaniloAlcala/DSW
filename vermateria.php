@@ -102,7 +102,6 @@ include rutas::$pathNuevoHeader;
                             <input class="form-control" type="text" name="tipo_aprobacion" id="tipo_aprobacion" value="<?= $row['tipo_aprobacion'] ?>"readonly>
                         </div>
 
-                     
 
                         <div class="col-md-6 position-relative">
                           <label class="form-label text-black-50" for="nota_min_aprobacion">Mínimo de aprobación para la materia*:</label>

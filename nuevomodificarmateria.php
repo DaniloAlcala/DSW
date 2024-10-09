@@ -31,13 +31,14 @@ $id_materia = $_GET['id_materia'];
         $new_denominacion_materia = $_POST['denominacion_materia'];
         $new_tipo_aprobacion = $_POST['tipo_aprobacion'];
         $new_nota_min_aprobacion = $_POST['nota_min_aprobacion'];
-        $new_trayecto = $_POST['trayecto'];
         $new_correlatividades = $_POST['correlatividades'];
         $new_estado_materia = $_POST['estado_materia'];
-        $new_ciclo_lectivo = $_POST['ciclo_lectivo'];
         $new_campo_formativo = $_POST['campo_formativo'];
         $new_carga_horaria_materia = $_POST['carga_horaria_materia'];
+        $new_id_carrera = $_POST['id_carrera'];
+        $new_anio_carrera = $_POST['anio_carrera'];
     
+        
         // Consulta SQL con parámetros
         $sql = "UPDATE materia SET 
                     cod_num = ?, 
@@ -45,12 +46,12 @@ $id_materia = $_GET['id_materia'];
                     denominacion_materia = ?, 
                     tipo_aprobacion = ?, 
                     nota_min_aprobacion = ?, 
-                    trayecto = ?, 
                     correlatividades = ?, 
                     estado_materia = ?,
-                    ciclo_lectivo= ?,
                     campo_formativo = ?,
-                    carga_horaria_materia = ?
+                    carga_horaria_materia = ?,
+                    id_carrera = ?,
+                    anio_carrera = ?
                 WHERE id_materia = ?";
     
         // Preparar la consulta
@@ -60,18 +61,18 @@ $id_materia = $_GET['id_materia'];
         $stmt = $conn->prepare($sql);
 
         // Vincular los parámetros
-        $stmt->bind_param("isssisssssii",
+        $stmt->bind_param("isssisssiii",
             $new_cod_num,
             $new_cod_alpha,
             $new_denominacion_materia,
             $new_tipo_aprobacion,
             $new_nota_min_aprobacion,
-            $new_trayecto,
             $new_correlatividades,
             $new_estado_materia,
-            $new_ciclo_lectivo,
             $new_campo_formativo,
             $new_carga_horaria_materia,
+            $new_id_carrera,
+            $new_anio_carrera,
             $id_materia
         );
     
@@ -99,28 +100,38 @@ if ($conn->connect_error) {
     die("La conexión falló: " . $conn->connect_error);
 }
 
-$sql = "SELECT id_materia, cod_num, cod_alpha, denominacion_materia, tipo_aprobacion, nota_min_aprobacion, correlatividades, estado_materia, campo_formativo, carga_horaria_materia 
-        FROM materia
-        WHERE id_materia=$id_materia";
+$sql = "SELECT id_materia,
+cod_num,
+cod_alpha,
+denominacion_materia,
+tipo_aprobacion,
+nota_min_aprobacion,
+correlatividades,
+estado_materia,
+campo_formativo,
+carga_horaria_materia,
+id_carrera,
+anio_carrera
+FROM materia WHERE id_materia=$id_materia";
 
 $result = $conn->query($sql);
 $row = $result->fetch_assoc();
 
 // Cerrar la conexión
 $conn->close();
-include "headernosearch.php";
+include rutas::$pathNuevoHeader;
 ?>
 <main>
     <!-- Contenedor principal -->
     <div class="d-flex flex-nowrap sidebar-height"> 
       <!-- Aside/Wardrobe/Sidebar Menu --> 
       <?php
-      include "sidebar.php"; 
+
         ?>  
-      <!-- Fin de sidebar/aside -->
+
       <!-- Contenedor de ventana de contenido -->
-      <div class="col-9 offset-3 bg-light-subtle pt-5">
-            <div class="d-block p-3 m-4 h-100 ">
+      <div class="container fluid">
+            <div class="table responsive">
                 <h3 class="card-footer-text mt-2 mb-5 p-2">Materias</h3>
                 <div class="m-4">
                     <h2 class="text-dark-subtle title">Editar Materia</h2>
@@ -136,8 +147,8 @@ include "headernosearch.php";
                             <div class="col-md-6 position-relative">
                                 <input class="form-control" type="hidden" name="id_materia" value="<?= $row['id_materia'] ?>">
                                 
-                                <label class="form-label text-black-50" for="cod_num">Código numérico*:</label>
-                                <input class="form-control" type="number" name="cod_num" id="cod_num" value="<?= $row['cod_num'] ?>">
+                                <label class="form-label text-black-50" for="cod_num">Año Materia:</label>
+                                <input class="form-control" type="text" name="cod_num" id="cod_num" value="<?= $row['cod_num'] ?>">
                             </div>
 
 
@@ -152,8 +163,6 @@ include "headernosearch.php";
                                 <label class="form-label text-black-50" for="denominacion_materia">Denominación*:</label>
                                 <input class="form-control" type="text" name="denominacion_materia" id="denominacion_materia" value="<?= $row['denominacion_materia'] ?>">
                             </div>
-
-
 
                             <div class="col-md-6 position-relative">
                                 <label class="form-label text-black-50" for="tipo_aprobacion">Tipo de aprobación</label>
