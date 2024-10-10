@@ -105,9 +105,8 @@ include rutas::$pathNuevoHeader;
 
                         <div class="col-md-6 position-relative">
                           <label class="form-label text-black-50" for="nota_min_aprobacion">Mínimo de aprobación para la materia*:</label>
-                            <input class="form-control" type="text" name="nota_min_aprobacion" id="nota_min_aprobacion" value="<?= $row['nota_min_aprobacion'] ?>"readonly>
-                      
-                      </div>
+                          <input class="form-control" type="text" name="nota_min_aprobacion" id="nota_min_aprobacion" value="<?= $row['nota_min_aprobacion'] ?>"readonly>
+                        </div>
 
 
                         <div class="col-md-3 position-relative">
@@ -117,7 +116,8 @@ include rutas::$pathNuevoHeader;
 
                         <div class="col-md-3 position-relative">
                             <label class="form-label text-black-50" for="estado_materia">Estado Materia</label>
-                            <input class="form-control" type="text" name="estado_materia" id="estado_materia" value="<?= $row['estado_materia'] ?>"readonly>
+                            <input class="form-control" type="text" name="estado_materia" id="estado_materia" 
+                            value="<?= $row['estado_materia'] == 1 ? 'Activo' : 'Inactivo' ?>" readonly>
                         </div>
                         
 

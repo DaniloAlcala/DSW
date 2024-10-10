@@ -173,8 +173,8 @@ include rutas::$pathNuevoHeader;
                             </div>
 
 
-                            <div class="col-md-4 position-relative">
-                                <label class="form-label text-black-50 text-nowrap" for="nota_min_aprobacion">Nota mínima de aprobación*:</label>
+                            <div class="col-md-6 position-relative">
+                                <label class="form-label text-black-50" for="nota_min_aprobacion">Mínimo de aprobación para la materia*:</label>
                                 <select class="form-select form-select mb-3" name="nota_min_aprobacion" id="nota_min_aprobacion" aria-label="nota_min_aprobacion" value="<?= $row['nota_min_aprobacion'] ?>">
                                     <option value="1" <?php if ($row['nota_min_aprobacion'] == '1') echo 'selected'; ?>>1</option>
                                     <option value="2" <?php if ($row['nota_min_aprobacion'] == '2') echo 'selected'; ?>>2</option>
@@ -190,17 +190,16 @@ include rutas::$pathNuevoHeader;
                             </div>
 
 
+    
 
-                            <div class="col-md-3 position-relative">
-                                <label class="form-label text-black-50" for="trayecto">Trayecto*:</label>
-                                <input class="form-control" type="text" name="trayecto" id="trayecto" value="<?= $row['trayecto'] ?>" required>
-                            </div>
-
-
-                            <div class="col-md-6 position-relative">
-                                <label class="form-label text-black-50" for="correlatividades">Correlativas*:</label>
-                                <input class="form-control" type="text" name="correlatividades" id="correlatividades" value="<?= $row['correlatividades'] ?>">
-                            </div>
+                            
+                        <div class="col-md-3 position-relative">
+                            <label class="form-label text-black-50" for="correlatividades">Correlativas</label>
+                            <select class="form-select form-select mb-3" name="correlatividades" id="correlatividades" aria-label="select_correlatividades">
+                                    <option value="Si" <?= $row['correlatividades'] === 'Si' ? 'selected' : '' ?>>Si</option>
+                                    <option value="No" <?= $row['correlatividades'] === 'No' ? 'selected' : '' ?>>No</option>
+                            </select>
+                        </div>
 
 
 
@@ -214,10 +213,6 @@ include rutas::$pathNuevoHeader;
 
 
 
-                            <div class="col-md-3 position-relative">
-                                <label class="form-label text-black-50" for="ciclo_lectivo">Ciclo lectivo*:</label>
-                                <input class="form-control" type="text" name="ciclo_lectivo" id="ciclo_lectivo" value="<?= $row['ciclo_lectivo'] ?>">
-                            </div>
 
 
                             <div class="col-md-3 position-relative">
@@ -243,13 +238,18 @@ include rutas::$pathNuevoHeader;
                                 </div>
                             </div>
 
-
-                        <div class="col-md-6 offset-2 mb-5">
-                            <div class="d-flex mb-5 gap-2 justify-content-between align-content-center">
-                            <a href="tablalistadodematerias.php"><button class='btn btn-primary menu-icon border-0 px-4' type="button">Volver</button></a>
-                                <input class="btn btn-primary px-4 nav-bar border-0 text-wrap" type="submit" value="Actualizar">       
+                        
+                            <div class="table-resposive mx-5">
+                                <div class="d-flex mb-5 gap-2 justify-content-between align-content-center">
+                                    <a href="<?=rutas::$pathTablaListadoMaterias?>"><button class='btn btn-primary menu-icon border-0 px-4'>Volver</button></a>
+                                    <input class="btn btn-primary px-4 nav-bar border-0 text-wrap" type="submit" value="Actualizar">  
+                                </div>
                             </div>
-                        </div>
+
+
+
+
+
                     </form>
                 </div>
               </div>
