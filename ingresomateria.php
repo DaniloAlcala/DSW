@@ -9,31 +9,39 @@
 </head>
 <body>
 <?php
-require('./conexion.php');
+
+require('variablespath.php');
+require(rutas::$pathConection);
 
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $cod_num_n = $_POST['cod_num'];
     $cod_alpha_n = $_POST['cod_alpha'];
-    $tipo_aprobacion_n = $_POST['tipo_aprobacion'];
     $denominacion_materia_n = $_POST['denominacion_materia'];
-    $trayecto_n = $_POST['trayecto'];
-    $correlatividades_n = $_POST['correlatividades']; 
+    $tipo_aprobacion_n = $_POST['tipo_aprobacion'];
+    $nota_min_aprobacion_n = $_POST['nota_min_aprobacion'];
+    $correlatividades_n = $_POST['correlatividades'];
     $estado_materia_n = $_POST['estado_materia'];
-    $ciclo_lectivo_n = $_POST['ciclo_lectivo'];
     $campo_formativo_n = $_POST['campo_formativo'];
-    $cod_num = $_POST['cod_num'];
-    $nota_min_aprobacion = $_POST['nota_min_aprobacion'];
-    $carga_horaria_materia = $_POST['carga_horaria_materia'];
+    $carga_horaria_materia_n = $_POST['carga_horaria_materia'];
+    $id_carrera_n = $_POST['id_carrera'];
+    $anio_carrera_n = $_POST['anio_carrera'];
     
+   
+    
+    
+    $cod_num = htmlspecialchars($cod_num_n, ENT_QUOTES, 'UTF-8');
     $cod_alpha = htmlspecialchars($cod_alpha_n, ENT_QUOTES, 'UTF-8');
-    $tipo_aprobacion = htmlspecialchars($tipo_aprobacion_n, ENT_QUOTES, 'UTF-8');
     $denominacion_materia = htmlspecialchars($denominacion_materia_n, ENT_QUOTES, 'UTF-8');
-    $campo_formativo = htmlspecialchars($campo_formativo_n, ENT_QUOTES, 'UTF-8');
-    $trayecto = htmlspecialchars($trayecto_n, ENT_QUOTES, 'UTF-8');
+    $tipo_aprobacion = htmlspecialchars($tipo_aprobacion_n, ENT_QUOTES, 'UTF-8');
+    $nota_min_aprobacion = htmlspecialchars($nota_min_aprobacion_n, ENT_QUOTES, 'UTF-8');
     $correlatividades = htmlspecialchars($correlatividades_n, ENT_QUOTES, 'UTF-8');
     $estado_materia = htmlspecialchars($estado_materia_n, ENT_QUOTES, 'UTF-8');
-    $ciclo_lectivo = htmlspecialchars($ciclo_lectivo_n, ENT_QUOTES, 'UTF-8');
+    $campo_formativo = htmlspecialchars($campo_formativo_n, ENT_QUOTES, 'UTF-8');
+    $carga_horaria_materia = htmlspecialchars($carga_horaria_materia_n, ENT_QUOTES, 'UTF-8');
+    $id_carrera = htmlspecialchars($id_carrera_n, ENT_QUOTES, 'UTF-8');
+    $anio_carrera = htmlspecialchars($anio_carrera_n, ENT_QUOTES, 'UTF-8');
     
     $sql = "INSERT INTO materia (
         cod_num,
@@ -41,32 +49,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         denominacion_materia,
         tipo_aprobacion,
         nota_min_aprobacion,
-        trayecto,
         correlatividades,
         estado_materia,
-        ciclo_lectivo,
         campo_formativo,
-        carga_horaria_materia
+        carga_horaria_materia,
+        id_carrera,
+        anio_carrera
+
     ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     
     $stmt = $conn->prepare($sql);
     
     $stmt->bind_param(
-        "isssisssisi",
+        "isssisssiii",
         $cod_num,
         $cod_alpha,
         $denominacion_materia,
         $tipo_aprobacion,
         $nota_min_aprobacion,
-        $trayecto,
         $correlatividades,
         $estado_materia,
-        $ciclo_lectivo,
         $campo_formativo,
-        $carga_horaria_materia
+        $carga_horaria_materia,
+        $id_carrera,
+        $anio_carrera
     );
     
-    //Arreglo 03/12/2023
+   
      if ($stmt->execute()){
          if ($stmt->affected_rows > 0) {
             echo "Registro insertado correctamente";
@@ -79,21 +88,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
          echo "Error al ejecutar la consulta: " . $stmt->error;
          echo "<meta http-equiv='refresh' content='0.5;url=tablalistadodematerias.php'>";
      }
-   /*  echo "<meta http-equiv='refresh' content='0.5;url=tablalistadodematerias.php'>"; */
     
     $stmt->close();
 }
 $conn->close();
-include 'headernosearch.php';
+include rutas::$pathNuevoHeader;
 ?>
 
 <main>
     <div class="d-flex flex-nowrap sidebar-height">
         <?php
-        include "sidebar.php";
+       // include "sidebar.php";
         ?>
-        <div class="col-9 offset-3 bg-light-subtle pt-5">
-            <div class="d-block p-3 m-4 h-100">
+        <div class="container fluid">
+            <div class="table responsive">
                 <h3 class="card-footer-text mt-2 mb-5 p-2">Materia</h3>
                 <div class="m-4">
                     <h2 class="text-dark-subtle title">Ingresar Nueva Materia</h2>
