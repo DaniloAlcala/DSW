@@ -101,7 +101,6 @@
     <main>
         <div class="d-flex flex-nowrap sidebar-height">
             <?php
-            // include "sidebar.php";
             ?>
             <div class="container-fluid">
                 <div class="table responsive">
@@ -216,7 +215,7 @@
 
                             <div class="col-md-12">
                                 <div class="d-flex mb-5 gap-2 justify-content-between align-content-center">
-                                    <a href="tablalistadodematerias.php"><button
+                                    <a href="<?=rutas::$pathTablaListadodeMaterias?>"><button
                                             class='btn btn-primary menu-icon border-0 px-4'
                                             type="button">Volver</button></a>
                                     <input class="btn btn-primary px-4 nav-bar border-0 text-wrap" type="submit"
