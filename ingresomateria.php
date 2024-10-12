@@ -143,8 +143,7 @@
                             </div>
 
                             <div class="col-md-4 position-relative">
-                                <label class="form-label text-black-50" for="nota_min_aprobacion">Mínimo de aprobación
-                                    para la materia*:</label>
+                                <label class="form-label text-black-50" for="nota_min_aprobacion">Mínimo de aprobación*:</label>
                                 <select class="form-select form-select mb-3" name="nota_min_aprobacion"
                                     id="nota_min_aprobacion" aria-label="nota_min_aprobacion">
                                     <option value="1">1</option>
@@ -161,11 +160,10 @@
                             </div>
 
                             <div class="col-md-4 position-relative">
-                                <label class="form-label text-black-50 text-nowrap" for="correlatividades">Tiene
-                                    Materias Correlativas*:</label>
+                                <label class="form-label text-black-50 text-nowrap" for="correlatividades">Materias Correlativas*:</label>
                                 <select class="form-select form-select mb-3" name="correlatividades"
                                     id="correlatividades" aria-label="select_correlatividades">
-                                    <option selected value="Si">Si</option>
+                                    <option value="Si">Si</option>
                                     <option value="No">No</option>
                                 </select>
                             </div>
